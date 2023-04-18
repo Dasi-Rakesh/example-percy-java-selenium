@@ -11,6 +11,7 @@ import java.util.concurrent.Executors;
 
 import com.sun.net.httpserver.HttpServer;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -36,7 +37,8 @@ public class AppTest {
     @BeforeEach
     public void startAppAndOpenBrowser() throws IOException {
         // Disable browser logs from being logged to stdout
-        System.setProperty(FirefoxDriver.SystemProperty.BROWSER_LOGFILE,"/dev/null");
+        //System.setProperty(FirefoxDriver.SystemProperty.BROWSER_LOGFILE,"/dev/null");
+        WebDriverManager.firefoxdriver().setup();
         // Create a threadpool with 1 thread and run our server on it.
         serverExecutor = Executors.newFixedThreadPool(1);
         server = App.startServer(serverExecutor);
